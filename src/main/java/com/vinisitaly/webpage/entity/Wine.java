@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "wine")
@@ -26,6 +27,9 @@ public class Wine {
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private WineCategory category;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "wine")
+    private Set<Inventory> inventories;
 
     @Column(name= "sku")
     private  String sku;
