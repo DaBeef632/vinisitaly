@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "country")
@@ -15,6 +16,9 @@ public class Country {
     @Column(name= "id")
     private Long id;
 
-    @Column(name="name")
-    private String country;
+    @Column(name="country_name")
+    private String name;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
+    private Set<Region> regions;
 }
